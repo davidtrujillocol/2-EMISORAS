@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Radio Player Dual</title>
+  <style>
+    body {
+      background-color: #000;             /* Fondo negro */
+      color: white;
+      display: flex;
+      flex-direction: column;             /* Coloca los botones uno debajo del otro */
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      gap: 100px;                          /* Espacio entre botones */
+    }
+
+    .play-button {
+      padding: 80px 160px;                 /* Tamaño grande */
+      font-size: 80px;
+      background-color: #ffcc00;          /* Amarillo brillante */
+      color: #000;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 25px #ffcc00;
+      transition: all 0.3s ease;
+    }
+
+    .play-button:hover {
+      background-color: #ffaa00;
+      box-shadow: 0 0 40px #ffaa00;
+      transform: scale(1.05);
+    }
+
+    h2 {
+      margin: 0;
+      font-size: 28px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <h2>🎧 Emisora – 106.9 FM</h2>
+    <audio id="radio1" src="https://radiohd2.streaminghd.co:7098/stream" type="audio/mpeg"></audio>
+    <button class="play-button" id="btn1">▶ PLAY</button>
+  </div>
+
+  <div>
+    <h2>🎵 Emisora – NUEVO CONTINENTE</h2>
+    <audio id="radio2" src="https://tupanel.info/stream/2digitalradioHDsslLIVE016" type="audio/mpeg"></audio>
+    <button class="play-button" id="btn2">▶ PLAY</button>
+  </div>
+
+  <script>
+    const radio1 = document.getElementById('radio1');
+    const radio2 = document.getElementById('radio2');
+    const btn1 = document.getElementById('btn1');
+    const btn2 = document.getElementById('btn2');
+
+    // Función para detener ambos streams antes de reproducir otro
+    function stopAll() {
+      radio1.pause();
+      radio2.pause();
+      btn1.textContent = '▶ PLAY';
+      btn2.textContent = '▶ PLAY';
+    }
+
+    btn1.addEventListener('click', () => {
+      if (radio1.paused) {
+        stopAll();
+        radio1.play();
+        btn1.textContent = '❚❚ PAUSE';
+      } else {
+        radio1.pause();
+        btn1.textContent = '▶ PLAY';
+      }
+    });
+
+    btn2.addEventListener('click', () => {
+      if (radio2.paused) {
+        stopAll();
+        radio2.play();
+        btn2.textContent = '❚❚ PAUSE';
+      } else {
+        radio2.pause();
+        btn2.textContent = '▶ PLAY';
+      }
+    });
+  </script>
+</body>
+</html>
